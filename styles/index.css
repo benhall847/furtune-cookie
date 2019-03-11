@@ -5,11 +5,12 @@ html, body {
 .fortune{
     width: 40%;
     border: 5px solid black;
+    background: black;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    color:red;
+    color:white;
 }
 .button{
     margin: 5px;
