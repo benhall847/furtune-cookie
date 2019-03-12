@@ -1,6 +1,6 @@
 
 const myDiv = document.querySelector('[data-div]');
-let index = 0;
+let index = -1;
 let myArray = [];
 
 function changeFortune(){
@@ -8,7 +8,6 @@ function changeFortune(){
         index++;
         myDiv.textContent = myArray[index];
     }else{
-
         fetch('https://my-little-cors-proxy.herokuapp.com/http://yerkee.com/api/fortune')
         .then(function (response) { 
             return response.json() 
@@ -16,28 +15,31 @@ function changeFortune(){
         .then(function (data) { 
             index++;
             myDiv.textContent = data.fortune;
-            myArray[index] = data.fortune;
+            myArray[myArray.length] = data.fortune;
         })
-    }
-}
+    };
+};
+
 function previousFortune(){
     index -= 1;
     if (index < 0){
         index = (myArray.length - 1);
     }
     myDiv.textContent = myArray[index];
-}
+};
+
+
 function randomFortune(){
     fetch('https://my-little-cors-proxy.herokuapp.com/http://yerkee.com/api/fortune')
     .then(function (response) { 
     return response.json() 
-})
+    })
     .then(function (data) { 
     myDiv.textContent = data.fortune;
-    myArray[index] = data.fortune;
-})
-    index++
-}
+    myArray[myArray.length] = data.fortune;
+    index = myArray.length - 1;
+    })
+};
 
 
 
