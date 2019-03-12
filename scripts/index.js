@@ -1,18 +1,24 @@
 
 const myDiv = document.querySelector('[data-div]');
-let index = -1;
+let index = 0;
 let myArray = [];
 
 function changeFortune(){
-    fetch('https://my-little-cors-proxy.herokuapp.com/http://yerkee.com/api/fortune')
-        .then(function (response) { 
-        return response.json() 
-    })
-        .then(function (data) { 
+    if (index < (myArray.length - 1)){
         index++;
-        myDiv.textContent = data.fortune;
-        myArray[index] = data.fortune
-    })
+        myDiv.textContent = myArray[index];
+    }else{
+
+        fetch('https://my-little-cors-proxy.herokuapp.com/http://yerkee.com/api/fortune')
+        .then(function (response) { 
+            return response.json() 
+        })
+        .then(function (data) { 
+            index++;
+            myDiv.textContent = data.fortune;
+            myArray[index] = data.fortune;
+        })
+    }
 }
 function previousFortune(){
     index -= 1;
